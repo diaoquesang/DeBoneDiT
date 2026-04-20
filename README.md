@@ -1,1 +1,1 @@
-# 🫁 DeBoneDiT: Depth-Driven Conditional Bridge Diffusion Transformer for Bone Suppression
+# 🫁 DeBoneDiT: Depth-Driven Conditional Bridge Diffusion Transformers for Bone Suppression
