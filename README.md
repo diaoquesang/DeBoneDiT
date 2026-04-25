@@ -5,7 +5,7 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 ## 🧑🏻‍🏫 Background
 
-Chest X-Ray (CXR) is a primary modality for diagnosing pulmonary diseases, yet the overlap of bone structures often obscures critical pathological details, increasing the risk of diagnostic uncertainty. While Dual-Energy Subtraction (DES) is the clinical benchmark for bone suppression, its widespread use is limited by specialized hardware requirements and increased radiation exposure. 
+**Chest X-Ray (CXR)** is a primary modality for diagnosing pulmonary diseases, yet **the overlap of bone structures often obscures critical pathological details**, increasing the risk of diagnostic uncertainty. While **Dual-Energy Subtraction (DES)** is the clinical benchmark for bone suppression, its widespread use is limited by **specialized hardware requirements** and **increased radiation exposure**. 
 
 <div align="center">
 
