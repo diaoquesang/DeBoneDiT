@@ -41,7 +41,7 @@ To address these challenges, we propose **DeBoneDiT**, a depth-driven conditiona
 ## ⚙️ Prerequisties
 
 - Linux/Windows
-- Python>=3.7
+- Python>=3.11
 - NVIDIA GPU + CUDA cuDNN
 
 ## 🧪 Implementation Details
