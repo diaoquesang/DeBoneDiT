@@ -46,7 +46,9 @@ To address these challenges, we propose **DeBoneDiT**, a depth-driven conditiona
 
 ## 🧪 Implementation Details
 
-All experiments were performed using PyTorch 2.5.1 on a single NVIDIA V100 32 GB GPU within Ubuntu 22.04. WDT-MD was trained from scratch over 600 epochs with a batch size of 4 utilizing the AdamW optimizer, complemented by a dynamic learning rate schedule initialized at $10^{-4}$. The noise scheduling parameter $\beta_t$ followed a scaled linear trajectory ranging from 0.00085 to 0.012 across $T=1000$ diffusion timesteps. The sampling steps $T_s$ was set to 50 using the LCM sampler. In pseudo-normal pattern synthesis, the inpainting radius $r$ is set to 3 pixels. For wavelet decomposition, the Daubechies 6 basis was selected to balance computational efficiency and time-frequency localization.
+All experiments were performed using PyTorch 2.5.1 on an NVIDIA A800 GPU within Ubuntu 22.04. The DAE was trained from scratch for 200 epochs with a batch size of 4 using the Adam optimizer. Specifically, the learning rate was set to $10^{-4}$ for both the encoder $E$ and decoder $D$, and $5 \times 10^{-4}$ for the discriminator $\mathcal{D}$. Regarding the latent space, the downsampling factor $r$ was set to 4, resulting in a latent feature map of $256 \times 256$ for $1024 \times 1024$ inputs. To balance different training objectives, the trade-off weights for DAE training are set as follows: $\lambda_{adv}=10^{-2}$, $\lambda_{per}=10^{-3}$, and $\lambda_{dep}=1$. 
+
+In addition, the DiT-based denoising network $\epsilon_\theta$ was trained from scratch for 2000 epochs with a batch size of 8 using the AdamW optimizer. Specifically, a multi-step learning rate decay strategy was employed, initialized at $10^{-4}$. Following established practices, Exponential Moving Average (EMA) and Classifier-Free Guidance (CFG) were adopted to ensure model robustness during training and inference, respectively. Furthermore, the number of diffusion timesteps $T$ was set to 1000 for training, whereas only 50 sampling steps were utilized for inference to facilitate rapid generation. 
 
 ## 📦 Datasets
 
@@ -57,19 +59,6 @@ Two publicly available datasets, namely [IDRiD](https://ieee-dataport.org/openac
 **The IDRiD dataset**, a benchmark resource for diabetic retinopathy analysis, was adapted for our study. For MA detection, we curated a subset of 249 samples, including 199 training cases, 24 validation cases, and 26 test cases. Specifically, the training set contains 134 normal images and 65 abnormal images. Contrast Limited Adaptive Histogram Equalization (CLAHE) was applied with 8 $\times$ 8 tile grids and a 2.0 clip limit to enhance contrast. Considering  the computational overhead, we implemented dimension standardization through bilinear downsampling to 300 $\times$ 200 pixels. 
 
 **The e-ophtha MA dataset** consists of 381 cases divided into 304 training, 38 validation, and 39 test samples. Specifically, the training set contains 188 normal images and 116 abnormal images. The preprocessing pipeline maintained strict consistency with IDRiD: (1) CLAHE (8 $\times$ 8 tile grids, 2.0 clip limit); (2) downsampling to 300 $\times$ 200 pixels.
-
-
-### Pre-processing
-
-```
-python code/pre-processing.py
-```
-
-### Split
-
-```
-python code/split.py
-```
 
 ## 🌵 Dependencies
 
