@@ -8,12 +8,14 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 <div align="center">
 
-
 <div style="display:flex;gap:10px;">
   <img src="https://github.com/user-attachments/assets/1adea621-28dc-4b4f-ac69-096f2d02d7d2" style="width:85%;">
 </div>
 
 </div>
+
+Fig. 1. Overview of the DeBoneDiT architecture. Stage 1 (top): A Depth Auto-Encoder (DAE) is first pretrained to reconstruct images while preserving spatial depth information. Stage 2 (bottom): The bone suppression task is formulated as a Brownian bridge diffusion process in the latent space, where a DiT-based network iteratively transforms the latent representation of the source CXR $z_T$ into the target soft tissue $z_0$.
+
 
 ## 🧑🏻‍🏫 Background
 
