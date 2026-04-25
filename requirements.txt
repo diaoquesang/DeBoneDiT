@@ -1,0 +1,15 @@
+diffusers==0.27.0
+lpips==0.1.4
+matplotlib==3.7.2
+monai==1.2.0
+monai-generative==0.2.2
+numpy==1.26.4
+opencv-python==4.12.0.88
+openpyxl==3.2.0b1
+pandas==2.0.3
+scikit-image==0.22.0
+timm==1.0.15
+torch==2.2.1+cu118
+torch-ema==0.3
+torchvision==0.17.1+cu118
+tqdm==4.67.1
