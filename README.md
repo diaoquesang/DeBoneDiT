@@ -79,16 +79,13 @@ pip install -r requirements.txt
 
 <div align="center">
 
-| Dependencies | Versions | Dependencies | Versions |
-|--------------|----------|--------------|----------|
-| diffusers    | 0.27.2   | timm         | 1.0.15   |
-| matplotlib   | 3.7.2    | torch        | 2.0.1+cu117 |
-| matplotlib-inline | 0.1.6 | torch-ema    | 0.3      |
-| numpy        | 1.26.4   | torchaudio   | 2.0.2+cu117 |
-| opencv-python | 4.8.1.78 | torchprofile | 0.0.4    |
-| pandas       | 2.0.3    | torchsummary | 1.5.1    |
-| pytorch-wavelets | 1.3.0 | torchvision  | 0.15.2+cu117 |
-| PyWavelets   | 1.8.0    | tqdm         | 4.66.1   |
+| Dependencies | Versions   | Dependencies     | Versions    | Dependencies   | Versions     |
+|--------------|------------|------------------|-------------|----------------|--------------|
+| diffusers    | 0.27.0     | monai            | 1.2.0       | opencv-python  | 4.12.0.88    |
+| lpips        | 0.1.4      | monai-generative | 0.2.2       | openpyxl       | 3.2.0b1      |
+| matplotlib   | 3.7.2      | numpy            | 1.26.4      | pandas         | 2.0.3        |
+| scikit-image | 0.22.0     | timm             | 1.0.15      | torch          | 2.2.1+cu118  |
+| torch-ema    | 0.3        | torchvision      | 0.17.1+cu118| tqdm           | 4.67.1       |
 
 </div>
 
