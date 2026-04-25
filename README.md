@@ -16,25 +16,27 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 ## 😖 Current Challenges
 
-1. CXR imaging inherently projects 3D anatomical structures onto a 2D plane, leading to **irreversible loss of spatial depth information**. This deficiency limits the ability of conventional latent space construction to capture the hierarchical anatomical relationships between bones and soft tissues, compromising the fidelity of subsequent diffusion-based soft tissue synthesis.
+- CXR imaging inherently projects 3D anatomical structures onto a 2D plane, leading to **irreversible loss of spatial depth information**. This deficiency limits the ability of conventional latent space construction to capture the hierarchical anatomical relationships between bones and soft tissues, compromising the fidelity of subsequent diffusion-based soft tissue synthesis.
 
-2. Existing diffusion-based methods frame bone suppression as a conditional generation task initialized from Gaussian noise. However, the **substantial gap between the Gaussian prior and the target data distribution** compromises anatomical consistency. Consequently, these methods inherently require a large number of sampling steps to bridge this gap, leading to increased computational burden.
+- Existing diffusion-based methods frame bone suppression as a conditional generation task initialized from Gaussian noise. However, the **substantial gap between the Gaussian prior and the target data distribution** compromises anatomical consistency. Consequently, these methods inherently require a large number of sampling steps to bridge this gap, leading to increased computational burden.
 
-3. While U-Net architectures remain the dominant backbone for noise estimation in diffusion models, their encoder-decoder design with dense skip connections suffers from **suboptimal computational efficiency and poor scalability** when performing high-resolution bone suppression. This limitation precludes practical integration into routine radiological workflows.
+- While U-Net architectures remain the dominant backbone for noise estimation in diffusion models, their encoder-decoder design with dense skip connections suffers from **suboptimal computational efficiency and poor scalability** when performing high-resolution bone suppression. This limitation precludes practical integration into routine radiological workflows.
 
-4. **The scarcity of large-scale, high-quality paired datasets** constitutes a fundamental bottleneck in bone suppression research. Currently, the largest existing publicly available dataset, JSRT, contains only 241 paired images with suboptimal quality marked by inadequate clarity and pronounced artifacts. These data constraints severely hinder the reliability of model training and evaluation, impeding the effective translation of methodological innovations into clinically applicable solutions.
+- **The scarcity of large-scale, high-quality paired datasets** constitutes a fundamental bottleneck in bone suppression research. Currently, the largest existing publicly available dataset, JSRT, contains only 241 paired images with suboptimal quality marked by inadequate clarity and pronounced artifacts. These data constraints severely hinder the reliability of model training and evaluation, impeding the effective translation of methodological innovations into clinically applicable solutions.
 
 ## 🌟 Primary Contributions
 
-To address these challenges, we propose a **W**avelet **D**iffusion **T**ransformer framework for **M**A **D**etection (**WDT-MD**). This is a supervised image-conditioned wavelet-domain model based on  Diffusion Transformers (DiTs). Our contributions can be summarized as follows:
+To address these challenges, we propose **DeBoneDiT**, a depth-driven conditional bridge diffusion Transformer architecture designed for efficient high-resolution bone suppression. Drawing upon prior experience, we adopt the two-stage design of LDMs to ensure computational efficiency. In addition, we have constructed and released **SZCH-X-Rays**, a high-quality dataset containing 741 pairs of CXR and DES soft tissue images for bone suppression research. Our contributions can be summarized as follows:
 
-1. In order to mitigate "identity mapping", we propose a ``noise-encoded image conditioning`` mechanism for diffusion-based MA detection. By perturbing the image condition with random intensities during training, the model is driven to capture the normal pattern.
+- We introduce **Depth Auto-Encoder (DAE)**, a depth-driven vision tokenizer for perceptual compression into the latent space. By incorporating a depth loss derived from the features of a pretrained DINOv2 encoder fine-tuned on a comprehensive collection of depth estimation datasets, DAE effectively  preserves spatial depth information within the latent representations. This enables enhanced perceptual quality in both latent-space bone suppression and pixel-space reconstruction.
 
-2. To alleviate the issue of high false positives, we introduce pixel-level supervision signals in the training process through ``pseudo-normal pattern synthesis``. Specifically, we obtain the pseudo-normal labels align with the spatial distribution of real fundus images using inpainting techniques. This enables the model to distinguish MAs from other anomalies, thereby improving the detection performance.
+- We formulate bone suppression as a **Brownian bridge diffusion process**, departing from the Conditional Diffusion Model (CDM) paradigm prevalent in existing research. By replacing the prior with CXR data instead of Gaussian noise, inter-domain variations in the diffusion process are significantly reduced. Building upon this, we incorporate conditional guidance based on source domain information, further mitigating prediction difficulty and cumulative error at each sampling step.
 
-3. To improve the reconstruction quality of normal features, we propose a ``wavelet diffusion Transformer`` architecture, which combines the global modelling capability of DiTs with the multi-scale analysis advantage of wavelet decomposition to better understand the overall structure and detailed information of fundus images.
+- We demonstrate that **Diffusion Transformers (DiTs)** exhibit computational efficiency and scalability advantages over other denoising backbones in bone suppression, enabling high-resolution processing with reduced computational overhead.
 
-4. Comprehensive experiments on the IDRiD and e-ophtha MA datasets demonstrate exceptional performance of our WDT-MD, holding significant promise for improving early DR screening.
+- We have constructed and released **SZCH-X-Rays**, the largest publicly available high-quality paired dataset for bone suppression to date, comprising 741 pairs of posterior-anterior CXR and DES soft tissue images. With superior image clarity compared to the existing JSRT dataset, SZCH-X-Rays aims to address the critical data scarcity bottleneck, providing a reliable benchmark for the training and evaluation of future models.
+  
+- Extensive experiments conducted on both our self-constructed SZCH-X-Rays dataset and the public JSRT dataset demonstrate that DeBoneDiT achieves **state-of-the-art performance and efficiency** in bone suppression, highlighting its promise for clinical deployment.
 
 ## ⚙️ Prerequisties
 
