@@ -16,13 +16,13 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 ## 😖 Current Challenges
 
-1. CXR imaging inherently projects 3D anatomical structures onto a 2D plane, leading to irreversible loss of spatial depth information. This deficiency limits the ability of conventional latent space construction to capture the hierarchical anatomical relationships between bones and soft tissues, compromising the fidelity of subsequent diffusion-based soft tissue synthesis.
+1. CXR imaging inherently projects 3D anatomical structures onto a 2D plane, leading to **irreversible loss of spatial depth information**. This deficiency limits the ability of conventional latent space construction to capture the hierarchical anatomical relationships between bones and soft tissues, compromising the fidelity of subsequent diffusion-based soft tissue synthesis.
 
-2. Existing diffusion-based methods frame bone suppression as a conditional generation task initialized from Gaussian noise. However, the substantial gap between the Gaussian prior and the target data distribution compromises anatomical consistency. Consequently, these methods inherently require a large number of sampling steps to bridge this gap, leading to increased computational burden.
+2. Existing diffusion-based methods frame bone suppression as a conditional generation task initialized from Gaussian noise. However, the **substantial gap between the Gaussian prior and the target data distribution** compromises anatomical consistency. Consequently, these methods inherently require a large number of sampling steps to bridge this gap, leading to increased computational burden.
 
-3. While U-Net architectures remain the dominant backbone for noise estimation in diffusion models, their encoder-decoder design with dense skip connections suffers from suboptimal computational efficiency and poor scalability when performing high-resolution bone suppression. This limitation precludes practical integration into routine radiological workflows.
+3. While U-Net architectures remain the dominant backbone for noise estimation in diffusion models, their encoder-decoder design with dense skip connections suffers from **suboptimal computational efficiency** and **poor scalability** when performing high-resolution bone suppression. This limitation precludes practical integration into routine radiological workflows.
 
-4. The scarcity of large-scale, high-quality paired datasets constitutes a fundamental bottleneck in bone suppression research. Currently, the largest existing publicly available dataset, JSRT, contains only 241 paired images with suboptimal quality marked by inadequate clarity and pronounced artifacts. These data constraints severely hinder the reliability of model training and evaluation, impeding the effective translation of methodological innovations into clinically applicable solutions.
+4. **The scarcity of large-scale, high-quality paired datasets** constitutes a fundamental bottleneck in bone suppression research. Currently, the largest existing publicly available dataset, JSRT, contains only 241 paired images with suboptimal quality marked by inadequate clarity and pronounced artifacts. These data constraints severely hinder the reliability of model training and evaluation, impeding the effective translation of methodological innovations into clinically applicable solutions.
 
 ## 🌟 Primary Contributions
 
