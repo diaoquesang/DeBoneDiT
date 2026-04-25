@@ -2,17 +2,9 @@
 
 This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Driven Conditional Bridge Diffusion Transformers for Bone Suppression**".
 
-
 ## 🧑🏻‍🏫 Background
 
 **Chest X-Ray (CXR)** is a primary modality for diagnosing pulmonary diseases, yet **the overlap of bone structures often obscures critical pathological details**, increasing the risk of diagnostic uncertainty. While **Dual-Energy Subtraction (DES)** is the clinical benchmark for bone suppression, its widespread use is limited by **specialized hardware requirements and increased radiation exposure**. 
-
-<div align="center">
-
-<img width="80%" alt="data" src="https://github.com/user-attachments/assets/9b521b12-31c6-43e5-8537-0991e921f889" />
-
-  Figure 2: An illustration of MAs in fundus images.
-</div>
 
 ## 😖 Current Challenges
 
