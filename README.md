@@ -109,4 +109,4 @@ python dit_eval.py
 
 ## 📄 License
 
-This code is licensed under the terms of the [MIT License](https://opensource.org/licenses/MIT). 
+This code is licensed under the terms of the [Apache License 2.0](https://opensource.org/license/apache-2.0). 
