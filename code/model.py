@@ -440,33 +440,6 @@ SiT_models = {
     'ScaleAware-SiT-L/2': ScaleAware_SiT_L_2,
     'ScaleAware-SiT-B/2': ScaleAware_SiT_B_2,
 }
-from modules.unet import UNetModel
-
-myUnet = UNetModel(
-    image_size= 1024 / 8,
-    model_channels=128,
-    in_channels=8,
-    out_channels=8,
-    num_res_blocks=8,
-    num_heads=8,
-    attention_resolutions=(64, 32, 16, 8),
-    num_heads_upsample=-1,
-    num_head_channels=-1,
-    resblock_updown=True,
-    channel_mult=(1, 1, 2, 2, 4, 4),
-    use_scale_shift_norm=True,
-    use_new_attention_order=True
-)
-
-from uvit import UViT
-myUViT = UViT(img_size=128,
-       patch_size=2,
-       in_chans=8,
-       embed_dim=576,
-       depth=12,
-       num_heads=8,
-       num_classes=1001,
-       conv=True)
 
 mySiTModel = SiT_models['SiT-S/2'](input_size=128, in_channels=8)
 
