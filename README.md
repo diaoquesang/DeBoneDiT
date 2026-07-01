@@ -11,7 +11,7 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 <div align="center">
 
 <div style="display:flex;gap:10px;">
-  <img src="https://github.com/user-attachments/assets/1adea621-28dc-4b4f-ac69-096f2d02d7d2" style="width:85%;">
+  <img src="https://github.com/user-attachments/assets/d3342194-5ddc-4404-9383-6fe70d4534d2" style="width:85%;">
 </div>
 
 </div>
