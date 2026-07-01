@@ -34,11 +34,9 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 To address these challenges, we propose **DeBoneDiT**, a depth-driven conditional bridge diffusion Transformer architecture designed for efficient high-resolution bone suppression. Drawing upon prior experience, we adopt the two-stage design of LDMs to ensure computational efficiency. In addition, we have constructed and released **SZCH-X-Rays**, a high-quality dataset containing 741 pairs of CXR and DES soft tissue images for bone suppression research. Our contributions can be summarized as follows:
 
-- We introduce **Depth Auto-Encoder (DAE)**, a depth-driven vision tokenizer for latent compression. By incorporating a depth loss derived from the multi-level features of a pretrained Depth Anything V2~\citep{yang2024depth} encoder, DAE preserves both visual fidelity and depth-guided geometric cues within the latent representations.
+- We introduce **Depth Auto-Encoder (DAE)**, a depth-driven vision tokenizer for latent compression. By incorporating a depth loss derived from the multi-level features of a pretrained Depth Anything V2 encoder, DAE preserves both visual fidelity and depth-guided geometric cues within the latent representations.
 
 - We formulate bone suppression as a **source-conditioned Brownian bridge diffusion process**, leveraging CXRs as both the diffusion prior and structural guidance to narrow the source-to-target domain gap and preserve anatomical consistency. 
-
-- We demonstrate that **Diffusion Transformers (DiTs)** exhibit computational efficiency and scalability advantages over other denoising backbones in bone suppression, enabling high-resolution processing with reduced computational overhead.
 
 - We have constructed and released **SZCH-X-Rays**, the largest publicly available high-quality paired dataset for bone suppression to date, comprising 741 pairs of posterior-anterior CXR and DES soft tissue images.
   
