@@ -16,7 +16,7 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 </div>
 
-**Fig. 1.** Overview of the **DeBoneDiT** architecture. **Stage 1 (top)**: A **Depth Auto-Encoder (DAE)** is first pretrained to reconstruct images while preserving depth-guided geometric cues by leveraging a frozen Depth Anything V2 encoder. **Stage 2 (bottom)**: The bone suppression task is formulated as a **source-conditioned Brownian bridge diffusion process** in the latent space, where a **DiT-based network** iteratively transforms the latent representation of the source CXR $z_T$ into the target soft tissue $z_0$.
+**Fig. 1.** Overview of the **DeBoneDiT** architecture. **Stage 1 (top)**: A **Depth Auto-Encoder (DAE)** is first pretrained to reconstruct images while preserving structural consistency, where a multi-level depth feature loss $\mathcal{L}_{\text{dep}}$ is computed between the input and reconstruction using a pretrained Depth Anything V2 (DAV2) encoder. **Stage 2 (bottom)**: The bone suppression task is formulated as a **source-conditioned Brownian bridge diffusion process** in the latent space, where a **DiT-based network** iteratively transforms the latent representation of the source CXR $z_T$ into the target soft tissue $z_0$.
 
 ## 🧑🏻‍🏫 Background
 
@@ -24,9 +24,9 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 ## 😖 Current Challenges
 
-- While LDMs are widely adopted to handle high-resolution CXRs efficiently, their vision tokenizers are typically optimized for image reconstruction fidelity and therefore **fail to explicitly preserve depth-related geometric cues**, which are important for distinguishing overlapping bony and soft tissue structures.
+- While LDMs are widely adopted to handle high-resolution CXRs efficiently, their vision tokenizers are narrowly optimized for image reconstruction fidelity and therefore **fail to explicitly preserve structural consistency**, which is important for distinguishing overlapping bony and soft tissue structures.
 
-- Existing diffusion-based methods formulate bone suppression as a conditional generation task initialized from Gaussian noise. The resulting distribution gap **increases the difficulty of learning anatomically consistent mappings** and often **requires extensive iterative denoising**.
+- Existing diffusion-based methods formulate bone suppression as a conditional generation task initialized from Gaussian noise. The resulting distribution gap **increases the difficulty of learning anatomically plausible mappings** and often **requires extensive iterative denoising**.
 
 - **The scarcity of large-scale, high-quality paired datasets** remains a primary constraint in bone suppression research. The largest existing publicly available dataset JSRT contains only 241 paired images with blurring and pronounced artifacts, limiting training reliability and clinical translation.
 
@@ -34,13 +34,13 @@ This code is a **pytorch** implementation of our paper "**DeBoneDiT: Depth-Drive
 
 To address these challenges, we propose **DeBoneDiT**, a depth-driven conditional bridge diffusion Transformer architecture designed for efficient high-resolution bone suppression. Drawing upon prior experience, we adopt the two-stage design of LDMs to ensure computational efficiency. In addition, we have constructed and released **SZCH-X-Rays**, a high-quality dataset containing 741 pairs of CXR and DES soft tissue images for bone suppression research. Our contributions can be summarized as follows:
 
-- We introduce **Depth Auto-Encoder (DAE)**, a depth-driven vision tokenizer for latent compression. By incorporating a depth loss derived from the multi-level features of a pretrained Depth Anything V2 encoder, DAE preserves both visual fidelity and depth-guided geometric cues within the latent representations.
+- We introduce **Depth Auto-Encoder (DAE)**, a structure-aware vision tokenizer for latent compression. By incorporating a multi-level depth feature loss derived from the pretrained Depth Anything V2 encoder, DAE preserves both visual fidelity and structural consistency.
 
-- We formulate bone suppression as a **source-conditioned Brownian bridge diffusion process**, leveraging CXRs as both the diffusion prior and structural guidance to narrow the source-to-target domain gap and preserve anatomical consistency. 
+- To the best of our knowledge, we are the first to formulate bone suppression as a **Brownian bridge diffusion process** aiming to narrow the source-to-target domain gap. Furthermore, we introduce a **source conditioning mechanism** that leverages CXRs as both the diffusion prior and structural guidance to maintain anatomical plausibility.
 
 - We have constructed and released **SZCH-X-Rays**, the largest publicly available high-quality paired dataset for bone suppression to date, comprising 741 pairs of posterior-anterior CXR and DES soft tissue images.
   
-- **Extensive experiments** and **downstream evaluation** demonstrate that DeBoneDiT achieves superior bone suppression performance with reduced computational overhead, underscoring its potential for clinical application.
+- **Extensive experiments** and **downstream evaluation** demonstrate that DeBoneDiT achieves superior bone suppression performance with reduced computational overhead.
 
 ## ⚙️ Prerequisties
 
